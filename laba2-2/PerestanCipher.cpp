@@ -60,47 +60,40 @@ wstring PerestanCipher::DecoderPerestanCipher(PerestanCipher w, wstring& s)
 inline int PerestanCipher::getValidKey(const int k, const std::wstring & s)
 {
     if (k<=0)
-        throw cipher_error("Ключ не допустим. Введите число больше 0");
+        throw cipher_error("Wrong key");
     else if (k>(s.size()/2))
-        throw cipher_error("Ключ превышет половину длины текста. Выбирите ключ меньшего размера");
+        throw cipher_error("The key is longer than the text length");
     else
         return k;
 }
 inline std::wstring PerestanCipher::getValidOpenText(const std::wstring & s)
 {
-    int i=0;
     std::wstring tmp;
     for (auto c:s) {
         if (isalpha(c)) {
             if (islower(c))                {
                 tmp.push_back(toupper(c));
-                i++;
-                if (i==1) wcout<<L"Часть входного текста была перенесена в верхний регистр: "<<endl;
             } else
                 tmp.push_back(c);
         }
     }
     if (tmp.empty())
-        throw cipher_error("Входной текст отстутвует");
+        throw cipher_error("The input text is missing");
     return tmp;
 }
 
 inline std::wstring PerestanCipher::getValidCipherText(const std::wstring & s)
 {
-    int i=0;
     std::wstring tmp;
     for (auto c:s) {
         if (isalpha(c)) {
             if (islower(c)){
                 tmp.push_back(toupper(c));
-                i++;
-                if (i==1)
-                    throw cipher_error("Неправильный тип выходного текста");
             } else
                 tmp.push_back(c);
         }
     }
     if (tmp.empty())
-        throw cipher_error("Выходной текст отстутвует");
+        throw cipher_error("The output text is missing");
     return tmp;
 }

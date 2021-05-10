@@ -20,8 +20,8 @@ int main()
 {
     locale loc("ru_RU.UTF-8");
     locale::global(loc);
-    check(L"HElloWorlD",5);
-    check(L"HElloWorlD",7);
-    check(L"HEHHJKHWD",4);
+    check(L"PRograMmiroVANie",8);
+    check(L"PRograMmiroVANie",10);
+    check(L"LDFHFEUFHWBCD",5);
     return 0;
 }
